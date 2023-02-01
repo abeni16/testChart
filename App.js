@@ -12,7 +12,7 @@ import {
   vec,
 } from "@shopify/react-native-skia";
 
-import { animatedData, DataPoint, originalData } from "./data";
+import { animatedData, DataPoint, largeData, originalData } from "./data";
 import { curveBasis, line, scaleLinear, scaleTime } from "d3";
 import { Easing, View, Pressable, Text, StyleSheet } from "react-native";
 
@@ -32,7 +32,7 @@ const App = () => {
     const y = scaleLinear().domain([0, max]).range([GRAPH_HEIGHT, 35]);
 
     const x = scaleTime()
-      .domain([new Date(2000, 1, 1), new Date(2000, 1, 15)])
+      .domain([new Date(2000, 1, 1), new Date(2000, 4, 10)])
       .range([10, GRAPH_WIDTH - 10]);
 
     const curvedLine = line()
@@ -99,20 +99,20 @@ const App = () => {
           style="stroke"
           strokeWidth={1}
         />
-        <Path style="stroke" path={path} strokeWidth={4} color="#6231ff" />
+        <Path style="stroke" path={path} strokeWidth={2} color="orange" />
       </Canvas>
       <View style={styles.buttonContainer}>
         <Pressable
           onPress={() => transitionStart(0)}
           style={styles.buttonStyle}
         >
-          <Text style={styles.textStyle}>Graph 1</Text>
+          <Text style={styles.textStyle}>Monthly </Text>
         </Pressable>
         <Pressable
           onPress={() => transitionStart(1)}
           style={styles.buttonStyle}
         >
-          <Text style={styles.textStyle}>Graph 2</Text>
+          <Text style={styles.textStyle}>Yearly</Text>
         </Pressable>
       </View>
     </View>
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     marginRight: 20,
-    backgroundColor: "#6231ff",
+    backgroundColor: "black",
     paddingVertical: 5,
     paddingHorizontal: 20,
     borderRadius: 10,
